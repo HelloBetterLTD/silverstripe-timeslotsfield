@@ -124,7 +124,7 @@ class TimeSlotsField extends FormField
         Requirements::javascript('timeslotsfield/javascript/TimeSlotsField.js');
         Requirements::css('timeslotsfield/css/TimeSlotsField.css');
 
-        Config::inst()->update('i18n', 'time_format', 'h:mm a');
+        Config::inst()->update('i18n', 'time_format', 'H:mm');
         return parent::Field();
     }
 

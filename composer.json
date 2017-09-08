@@ -1,0 +1,18 @@
+{
+  "name": "silverstripers/silverstripe-timeslotsfield",
+  "description": "A module that provides a field to add/delete/edit time slots to particular DataObject",
+  "type": "silverstripe-module",
+  "keywords": ["silverstripe", "core", "formfield"],
+  "authors": [
+    {
+      "name": "Priyashantha HP",
+      "email": "priyashantha@silverstripers.com"
+    }],
+  "require": {
+    "silverstripe/framework": "~3.*"
+  },
+  "extra": {
+    "installer-name": "timeslotsfield"
+  }
+
+}

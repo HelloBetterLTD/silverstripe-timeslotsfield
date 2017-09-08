@@ -9,7 +9,7 @@
       "email": "priyashantha@silverstripers.com"
     }],
   "require": {
-    "silverstripe/framework": "~3.*"
+    "silverstripe/framework": "~3.1"
   },
   "extra": {
     "installer-name": "timeslotsfield"

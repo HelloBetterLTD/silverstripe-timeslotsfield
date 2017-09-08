@@ -44,7 +44,7 @@
                 var f = /\[old\]/,
                     name = $(this).attr('name');
                 if (name.match(f)) {
-                    name = domRow.data('name')+ '[new][Time][]';
+                    name = domRow.data('name')+ '[new][]';
                 }
                 $(this).attr("name", name);
                 $(this).removeAttr("data-id");

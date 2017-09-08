@@ -43,8 +43,7 @@ class TimeSlotsField extends FormField
                 $this->itemsToBeDeleted = $fields;
             }
             if (isset($value['old'])) {
-                $arrExistingDates = $value['old'];
-                $timeSlots = $arrExistingDates['Time'];
+                $timeSlots = $value['old'];
                 foreach ($timeSlots as $id => $strDate) {
                     if ($date = TimeSlot::get()->byID($id)) {
                         $date->Time = $timeSlots[$id];
@@ -53,8 +52,7 @@ class TimeSlotsField extends FormField
                 }
             }
             if (isset($value['new'])) {
-                $arrNewDates = $value['new'];
-                $timeSlots = $arrNewDates['Time'];
+                $timeSlots = $value['new'];
                 $iCount = count($timeSlots);
                 for ($i = 0; $i < $iCount; $i++) {
                     $item = TimeSlot::create(array(
@@ -90,8 +88,7 @@ class TimeSlotsField extends FormField
             }
         }
         if (isset($arrFields['old'])) {
-            $arrExistingSlots = $arrFields['old'];
-            $timeSlots = $arrExistingSlots['Time'];
+            $timeSlots = $arrFields['old'];
             foreach ($record->$relation() as $item) {
                 $id = $item->ID;
                 $item->Time = isset($timeSlots[$id]) ? $timeSlots[$id] : $item->Time;
@@ -99,8 +96,7 @@ class TimeSlotsField extends FormField
             }
         }
         if (isset($arrFields['new'])) {
-            $arrNewDates = $arrFields['new'];
-            $timeSlots = $arrNewDates['Time'];
+            $timeSlots = $arrFields['new'];
             $iCount = count($timeSlots);
             for ($i = 0; $i < $iCount; $i++) {
                 if (!$timeSlots[$i]) break;
@@ -124,7 +120,7 @@ class TimeSlotsField extends FormField
         Requirements::javascript('timeslotsfield/javascript/TimeSlotsField.js');
         Requirements::css('timeslotsfield/css/TimeSlotsField.css');
 
-        Config::inst()->update('i18n', 'time_format', 'H:mm');
+        Config::inst()->update('i18n', 'time_format', 'HH:mm');
         return parent::Field();
     }
 
@@ -144,7 +140,30 @@ class TimeSlotsField extends FormField
     }
 
     public function TimeField() {
-        return TimePickerField::create($this->getName(). '[new][Time][]', '');
+        return TimePickerField::create($this->getName(). '[new][]', '');
+    }
+
+    public function validate($validator) {
+        $arrValue = $this->value;
+        if (isset($arrValue['new'])) {
+            $arrTimes = array_merge($arrValue['old'], $arrValue['new']);
+        } else {
+            $arrTimes = $arrValue['old'];
+        }
+        $dups = self::get_duplicate_values(array_values($arrTimes));
+        if (count($dups)) {
+            $strDups = implode(', ', $dups);
+            $validator->validationError($this->name, 'You can\'t have duplicate time slots. Please check "'.$strDups.'"', "validation", false);
+            return false;
+        }
+        return true;
+    }
+
+    public static function get_duplicate_values($arr) {
+        $dups = array();
+        foreach(array_count_values($arr) as $val => $c)
+            if($c > 1) $dups[] = $val;
+        return $dups;
     }
 
 }

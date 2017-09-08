@@ -23,7 +23,7 @@ class TimeSlot extends DataObject
     public function TimeField($name, $status)
     {
         $status = $status ? : 'old';
-        return TimePickerField::create($name. "[$status][Time][$this->ID]", '', $this->Time);
+        return TimePickerField::create($name. "[$status][$this->ID]", '', $this->Time);
     }
 
 }

@@ -4,6 +4,7 @@
 
         $('.js-time-add').entwine({
             onclick: function(e) {
+                $(this).closest('form').addClass('changed');
                 e.preventDefault();
                 var id = '#'+ $(this).closest('.js-time-slots-holder').attr('id');
                 copyOccurrenceRow($(id).find(".js-time-row:last"))
@@ -20,6 +21,7 @@
 
             },
             onclick: function(e) {
+                $(this).closest('form').addClass('changed');
                 e.preventDefault();
                 var dates = $(this).closest('.js-time-slots'),
                     row = $(this).closest('.js-time-row');

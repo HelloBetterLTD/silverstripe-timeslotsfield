@@ -13,9 +13,17 @@ class TimeSlot extends DataObject
         'Time' => 'Time'
     );
 
+    private static $default_sort = 'Time ASC';
+
     public function getTitle()
     {
         return $this->dbObject('Time')->Nice();
+    }
+
+    public function TimeField($name, $status)
+    {
+        $status = $status ? : 'old';
+        return TimeField::create($name. "[$status][Time][$this->ID]", '', $this->Time);
     }
 
 }

@@ -6,7 +6,7 @@
             onclick: function(e) {
                 e.preventDefault();
                 var id = '#'+ $(this).closest('.js-time-slots-holder').attr('id');
-                copyOccurrenceRow($(id).find(".js-time-row:last"), "day")
+                copyOccurrenceRow($(id).find(".js-time-row:last"))
             }
         });
 
@@ -32,12 +32,10 @@
             }
         });
 
-        function copyOccurrenceRow(domRow, type) {
-            if (!type) {
-                type = "day"
-            }
+        function copyOccurrenceRow(domRow) {
             var cloned = domRow.clone();
             cloned.find("input.time").val('');
+            cloned.find("input.time").removeClass('timepicker-applied');
             cloned.appendTo(domRow.parent());
 
             cloned.find("input.time").each(function() {
@@ -49,14 +47,14 @@
                 $(this).attr("name", name);
                 $(this).removeAttr("data-id");
                 $(this).removeAttr("id");
-                $(this).removeClass("js-can-delete");
+                $(this).removeClass("js-can-delete timepicker-applied hasTimepicker");
                 $(this).prop("id", Math.floor(Math.random() * 1000));
             });
             cloned.find('button.js-time-add').each(function () {
-                $(this).html('<span class="ui-button-text">Add</span>');
+                $(this).html('<span class="ui-button-text">+</span>');
             });
             cloned.find('button.js-time-remove').each(function () {
-                $(this).html('<span class="ui-button-text">Remove</span>');
+                $(this).html('<span class="ui-button-text">-</span>');
             });
             var id = '#'+ cloned.closest('.js-time-slots-holder').attr('id');
             $(id).find('.js-time-remove').show();

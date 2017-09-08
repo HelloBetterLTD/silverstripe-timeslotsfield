@@ -8,8 +8,8 @@
                         $TimeField($Up.Name, $Status).SmallFieldHolder
                     </div>
                     <div class="ss-time-slots-item" >
-                        <button class="ss-time-slots-add js-time-add add">Add</button>
-                        <button class="ss-time-slots-remove js-time-remove delete js-can-delete">remove</button>
+                        <button class="ss-time-slots-button add js-time-add add">+</button>
+                        <button class="ss-time-slots-button remove js-time-remove delete js-can-delete">-</button>
                     </div>
                 </div>
             <% end_loop %>
@@ -19,8 +19,8 @@
                     $TimeField.SmallFieldHolder
                 </div>
                 <div class="ss-time-slots-item">
-                    <button class="ss-time-slots-add js-time-add add">Adde</button>
-                    <button class="ss-time-slots-remove js-time-remove delete">remove</button>
+                    <button class="ss-time-slots-button add js-time-add add">+</button>
+                    <button class="ss-time-slots-button remove js-time-remove delete">-</button>
                 </div>
             </div>
         <% end_if %>

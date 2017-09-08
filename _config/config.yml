@@ -1,0 +1,3 @@
+TimeField:
+  default_config:
+    datavalueformat: g:i a

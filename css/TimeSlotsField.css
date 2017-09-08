@@ -1,0 +1,44 @@
+.field .totimedate {
+    max-width: 83%;
+}
+
+.ss-time-slots-wrapper {
+    display: flex;
+    align-items: center;
+}
+
+.ss-time-slots-item {
+    margin: 5px 0;
+    width: 200px;
+}
+
+.ss-time-slots-item.time {
+    width: 100px;
+}
+
+input{
+    margin-left: 10px;
+}
+
+.cms .ss-ui-button.ss-time-slots-button {
+    border-radius: 50%;
+    border: 2px solid rgba(0, 0, 0, 0.7);
+    color: rgba(0, 0, 0, 0.7);
+}
+
+.cms .ss-ui-button.ss-time-slots-button span.ui-button-text {
+    font-size: 16px;
+    padding: 0;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+}
+
+.cms .ss-ui-button.ss-time-slots-button.remove span.ui-button-text {
+    line-height: 0.9;
+    font-size: 21px;
+}
+
+#ui-datepicker-div {
+    display: none;
+}

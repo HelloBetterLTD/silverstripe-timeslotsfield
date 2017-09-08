@@ -54,7 +54,7 @@ class TimeSlotsField extends FormField
             }
             if (isset($value['new'])) {
                 $arrNewDates = $value['new'];
-                $timeSlots = $arrNewDates['StartDate'];
+                $timeSlots = $arrNewDates['Time'];
                 $iCount = count($timeSlots);
                 for ($i = 0; $i < $iCount; $i++) {
                     $item = TimeSlot::create(array(
@@ -94,7 +94,7 @@ class TimeSlotsField extends FormField
             $timeSlots = $arrExistingSlots['Time'];
             foreach ($record->$relation() as $item) {
                 $id = $item->ID;
-                $item->Time = isset($timeSlots[$id]) ? $timeSlots[$id] : $item->StartDate;
+                $item->Time = isset($timeSlots[$id]) ? $timeSlots[$id] : $item->Time;
                 $item->write();
             }
         }
@@ -121,9 +121,10 @@ class TimeSlotsField extends FormField
 
 
     public function Field($properties = array()) {
-        Requirements::javascript('timeslotsfield/javascript/admin/TimeSlotsField.js');
+        Requirements::javascript('timeslotsfield/javascript/TimeSlotsField.js');
         Requirements::css('timeslotsfield/css/TimeSlotsField.css');
 
+        Config::inst()->update('i18n', 'time_format', 'h:mm a');
         return parent::Field();
     }
 
@@ -143,7 +144,7 @@ class TimeSlotsField extends FormField
     }
 
     public function TimeField() {
-        return TimeField::create($this->getName(). '[new][Time][]', '');
+        return TimePickerField::create($this->getName(). '[new][Time][]', '');
     }
 
 }

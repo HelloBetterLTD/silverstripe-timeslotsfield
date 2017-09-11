@@ -145,9 +145,10 @@ class TimeSlotsField extends FormField
 
     public function validate($validator) {
         $arrValue = $this->value;
-        if (isset($arrValue['new'])) {
+        $arrTimes = array();
+        if (isset($arrValue['new']) && isset($arrValue['old'])) {
             $arrTimes = array_merge($arrValue['old'], $arrValue['new']);
-        } else {
+        } elseif (isset($arrValue['old'])) {
             $arrTimes = $arrValue['old'];
         }
         $dups = self::get_duplicate_values(array_values($arrTimes));
